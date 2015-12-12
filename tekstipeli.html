@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tekstipeli</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script>
+    <script type="text/javascript" src="tekstipeli-opt.js"></script>    
+    
+    <h1 id="game-title"></h1>
+    <p style="font-size: 12px;">Joonas Häkkinen</p>
+    <div style="padding: 20px;">
+        <div id="area" style="margin: 5px; font-family: monospace; white-space: pre-wrap;  background-color: #eee; padding: 10px; border-radius: 5px;"></div>
+        <p>
+            Command: <input id="input"> 
+            <button id="button">Execute</button>
+        </p>
+        <div id="output" style="font-family: monospace; white-space: pre-wrap; background-color: #def; padding: 10px; border-radius: 5px;"></div>
+        <div id="turn-count" style="margin-top: 20px;">Turns played: 0</div>
+        <div style="margin-top: 20px;">
+            <a href="#" id="map-toggle">Show/hide map</a>
+            <p>
+                <img id="map" src="map.jpg" style="display: none">
+            </p>
+        </div>
+        <div style="margin-top: 20px;">
+            <a href="#" id="walkthrough-toggle">Show/hide walkthrough</a>
+            <pre style="display: none;" id="walkthrough">
+Walkthrough
+
+The game starts at the airport. The goal is to learn three web development skills (HTML, CSS and JavaScript) and to surf at three different surf spots (Echo Beach, Batu Bolong and Berawa) before returning to the airport. The player is carrying a laptop computer.
+
+HTML and CSS are learned by using the computer either at The Villa or Dojo Co-working space. When the player uses the computer for the first time, he learns HTML. After this he must go to Crate Cafe for a coffee before the computer can be used again. The player automatically drinks a coffee when he enters Crate. After this he can go back to Dojo or The Villa and use the computer again to learn CSS. JavaScript is learned by talking to the nerd in Dojo.
+
+Before the player can surf, he needs to pick up a surfboard from Bule Bule Surfshop. After this he can go to Berawa, Batu Bolong or Echo Beach and surf by giving the command “surf” or “use surfboard”.
+
+When the player has all three skills and has surfed at all three spots, he must return to the airport to finish the game. If he doesn’t do this within 100 turns, he loses.
+
+There’s an area named “Shortcut” between Bule Bule Surfshop and Canggu Village. The shortcut can be blocked or not, which is decided randomly when the player enters the area. If it’s blocked, the player must return to the previous area and either go around the long way through Sunset Road or try going back to the shortcut, where the condition is chosen randomly again. The probability for the shortcut being blocked is 2/5.
+
+The available commands are:
+go &lt;direction>: move to the given direction (north, east, south or west)
+get &lt;itemname>: pick up an item
+drop &lt;itemname>: drop an item
+inventory: lists the items and skills that you have
+examine &lt;itemname>: take a closer look at an item
+use &lt;itemname>: use item
+talk to &lt;character>: have a chat with a game character
+surf: go surf! (where applicable)
+quit: exit game
+help: lists the available commands
+            </pre>
+        </div> 
+    </div>
+    <script type="text/javascript">
+      $(function() {
+        $("#button").prop("disabled", false);
+        $("#input").val("").focus();
+        o1.adventure.ui.AdventureJSUI().main();
+        $("#map-toggle").click(function(e) {
+            e.preventDefault();
+            $("#map").toggle(300);
+        });
+        $("#walkthrough-toggle").click(function(e) {
+            e.preventDefault();
+            $("#walkthrough").toggle(300);
+        });
+      });
+    </script>
+  </body>
+</html>
